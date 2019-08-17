@@ -9,7 +9,6 @@
         "type": "git",
         "url": "http://github.com/johan13/flight-obstacles"
     },
-    "main": "index.js",
     "scripts": {
         "download": "ts-node download.ts",
         "start": "serve public"

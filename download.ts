@@ -12,21 +12,16 @@ async function main() {
         .split("\n")
         .map(line => line.trimRight().split(";"))
         .filter(cells => cells.length === 9 && cells[0] !== "NO")
-        .map(parseObstacle);
+        .map(([, name, lat, long, , heightFt, , , type]) => ({
+            name,
+            lat: parseCoordinate(lat),
+            long: parseCoordinate(long),
+            height: parseHeight(heightFt),
+            type,
+        }));
     const outPath = path.resolve(__dirname, "public", "obstacles.json");
     writeFileSync(outPath, JSON.stringify(obstacles));
     console.log(`Wrote ${obstacles.length} objects to ${outPath}.`);
-}
-
-function parseObstacle([, name, lat, long, , heightFt, , , type]: string[]) {
-    const obstacle = {
-        name,
-        lat: parseCoordinate(lat),
-        long: parseCoordinate(long),
-        height: parseHeight(heightFt),
-        type,
-    };
-    return obstacle;
 }
 
 function parseCoordinate(str: string) {

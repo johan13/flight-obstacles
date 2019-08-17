@@ -1,6 +1,5 @@
 Flight obstacles
 ================
-
 This repository holds the code for https://map.joleco.se.
 
 Updating the list of obstacles
