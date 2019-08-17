@@ -1,0 +1,28 @@
+{
+    "name": "flight-obstacles",
+    "version": "1.0.0",
+    "description": "Flight obstacle map",
+    "author": "Johan Levin <johan13@gmail.com>",
+    "homepage": "https://map.joleco.se/",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/johan13/flight-obstacles"
+    },
+    "main": "index.js",
+    "scripts": {
+        "download": "ts-node download.ts",
+        "start": "serve public"
+    },
+    "dependencies": {
+        "leaflet": "^1.5.1"
+    },
+    "devDependencies": {
+        "@types/node": "^10.14.15",
+        "@types/node-fetch": "^2.5.0",
+        "node-fetch": "^2.6.0",
+        "serve": "^11.1.0",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3"
+    }
+}
