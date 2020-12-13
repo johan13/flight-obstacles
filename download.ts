@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import fetch from "node-fetch";
 import * as path from "path";
 
-const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/8007/ES_ENR_5_4_WEF_20200910";
+const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/8260/ES_ENR_5_4_WEF_20201203";
 
 main().catch(console.error);
 async function main() {
