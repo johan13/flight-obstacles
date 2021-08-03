@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import fetch from "node-fetch";
-import * as path from "path";
+import path from "path";
 
 const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/8979/ES_ENR_5_4_WEF_20210617.CSV";
 
@@ -39,7 +39,6 @@ function parseHeight(feet: string) {
     const meters = parseFloat(feet) * 0.3048;
     if (!Number.isFinite(meters)) {
         throw new Error(`Failed to parse height: ${JSON.stringify(feet)}`);
-
     }
     return Math.round(meters);
 }
