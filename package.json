@@ -20,7 +20,7 @@
     "devDependencies": {
         "@types/node": "16.x",
         "@types/node-fetch": "2.x",
-        "node-fetch": "2.x",
+        "node-fetch": "3.x",
         "prettier": "^2.5.1",
         "serve": "^13.0.2",
         "ts-node": "^10.4.0",
