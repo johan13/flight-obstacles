@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import fs from "fs/promises";
 import fetch from "node-fetch";
 import path from "path";
 
@@ -10,7 +10,7 @@ async function main() {
     const csvText = (await response.buffer()).toString("latin1");
     const obstacles = csvText
         .split("\n")
-        .map(line => line.trimRight().split(";"))
+        .map(line => line.trimEnd().split(";"))
         .filter(cells => cells.length === 9 && cells[0] !== "NO")
         .map(([, name, lat, long, , heightFt, , , type]) => ({
             name,
@@ -30,13 +30,13 @@ function parseCoordinate(str: string) {
     if (!match) {
         throw new Error(`Failed to parse coordinate: ${JSON.stringify(str)}`);
     }
-    const [, deg, min, sec] = match.map(parseFloat);
+    const [, deg, min, sec] = match.map(Number);
     return Math.round((deg + min / 60 + sec / 3600) * 10000) / 10000;
 }
 
 /** Parses a textual height in feet into a numeric height in meters. */
 function parseHeight(feet: string) {
-    const meters = parseFloat(feet) * 0.3048;
+    const meters = Number(feet) * 0.3048;
     if (!Number.isFinite(meters)) {
         throw new Error(`Failed to parse height: ${JSON.stringify(feet)}`);
     }
