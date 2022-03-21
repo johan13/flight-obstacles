@@ -25,8 +25,9 @@
             .addLayer(new L.TileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 minZoom: 8,
                 maxZoom: 17,
-                attribution: "Map data &copy; <a href=\"https://openstreetmap.org\">OpenStreetMap</a> contributors." +
-                    " | Fork me on <a href=\"http://github.com/johan13/flight-obstacles\">GitHub</a>"
+                attribution: "Map data from <a href=\"https://openstreetmap.org/copyright\">OpenStreetMap</a>" +
+                    " | Obstacles updated March 2022" +
+                    " | Fork me on <a href=\"https://github.com/johan13/flight-obstacles\">GitHub</a>"
             }));
 
         map.locate({ setView: true, maxZoom: 11 });
