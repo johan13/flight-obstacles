@@ -7,7 +7,7 @@ Updating the list of obstacles
 1. Find the URL to the current CSV file on lfv.se. The URL changes frequently. Right now it can be found at
    https://aro.lfv.se/Editorial/View/Dataset.
 2. Update the URL in download.ts
-3. Run `npm install && npm run download`.
+3. Run `nvm use && npm install && npm run download`.
 
 Deploying the app to AWS S3
 ---------------------------
