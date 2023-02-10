@@ -1,6 +1,6 @@
-import fs from "fs/promises";
+import fs from "node:fs/promises";
+import path from "node:path";
 import fetch from "node-fetch";
-import path from "path";
 
 const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/12231/ENR%205-4%20WEF_20221103";
 
