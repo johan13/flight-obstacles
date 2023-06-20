@@ -1,0 +1,10 @@
+arrowParens: avoid
+printWidth: 100
+quoteProps: consistent
+tabWidth: 4
+trailingComma: all
+
+overrides:
+  - files: "*.yml"
+    options:
+      tabWidth: 2
