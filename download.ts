@@ -2,16 +2,16 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import fetch from "node-fetch";
 
-const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/13601/ENR%205-4%20WEF_20231130";
+const OBSTACLE_CSV_URL = "https://aro.lfv.se/Editorial/View/13941/ENR%205-4%20WEF_20240321";
 
 main().catch(console.error);
 async function main() {
     const response = await fetch(OBSTACLE_CSV_URL);
-    const csvText = (await response.buffer()).toString("latin1");
-    const obstacles = csvText
-        .split("\n")
-        .map(line => line.trimEnd().split(";"))
-        .filter(cells => cells.length === 10 && cells[0] !== "NO")
+    const lines = (await response.buffer()).toString("latin1").trimEnd().split("\r\n");
+    const headerIndex = lines.findIndex(l => l.startsWith("NO;NAME_OF_OBSTACLE;"));
+    const obstacles = lines
+        .slice(headerIndex + 1)
+        .map(line => line.split(";"))
         .map(([, name, lat, long, , heightFt, , , type]) => ({
             name,
             lat: parseCoordinate(lat),
