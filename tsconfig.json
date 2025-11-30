@@ -1,3 +1,23 @@
 {
-    "extends": "@tsconfig/node24/tsconfig.json"
+    "compilerOptions": {
+        // General target options.
+        "module": "nodenext",
+        "target": "esnext",
+        "lib": ["esnext"],
+        "types": ["node"],
+
+        // Settings for running Typescript without transpilation.
+        "erasableSyntaxOnly": true,
+        "noEmit": true,
+        "rewriteRelativeImportExtensions": true,
+        "verbatimModuleSyntax": true,
+
+        // Type checking options.
+        "skipLibCheck": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noUncheckedIndexedAccess": true,
+        "noUncheckedSideEffectImports": true,
+        "noUnusedLocals": true
+    }
 }

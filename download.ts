@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parseString as parseCsv } from "@fast-csv/parse";
+import * as csv from "@fast-csv/parse";
 import AdmZip from "adm-zip";
 
 const OBSTACLE_ZIP_URL =
@@ -10,7 +10,7 @@ main().catch(console.error);
 async function main() {
     const csvData = await getCsvData();
     const obstacles = await Array.fromAsync(parseObstacles(csvData));
-    const outPath = path.join(__dirname, "public", "obstacles.json");
+    const outPath = path.resolve("public", "obstacles.json");
     await fs.writeFile(outPath, JSON.stringify(obstacles));
     console.log(`Wrote ${obstacles.length} objects to ${outPath}.`);
 }
@@ -30,7 +30,7 @@ async function getCsvData() {
 }
 
 async function* parseObstacles(csvData: string) {
-    for await (const obj of parseCsv(csvData, { delimiter: ";", headers: true })) {
+    for await (const obj of csv.parseString(csvData, { delimiter: ";", headers: true })) {
         yield {
             name: obj["NAME"],
             lat: parseCoordinate(obj["LATITUDE"]),
@@ -43,11 +43,10 @@ async function* parseObstacles(csvData: string) {
 
 /** Parses a coordinate on the format used in the CSV file (deg, min, sec) into numeric degrees with four decimals. */
 function parseCoordinate(str: string) {
-    const match = /^(\d{2,3})(\d{2})(\d{2}\.\d)[EN]$/.exec(str);
-    if (!match) {
+    const [, deg, min, sec] = /^(\d{2,3})(\d{2})(\d{2}\.\d)[EN]$/.exec(str)?.map(Number) ?? [];
+    if (deg === undefined || min === undefined || sec === undefined) {
         throw new Error(`Failed to parse coordinate: ${JSON.stringify(str)}`);
     }
-    const [, deg, min, sec] = match.map(Number);
     return Math.round((deg + min / 60 + sec / 3600) * 10000) / 10000;
 }
 
