@@ -4,7 +4,7 @@ import { parseString as parseCsv } from "@fast-csv/parse";
 import AdmZip from "adm-zip";
 
 const OBSTACLE_ZIP_URL =
-    "https://aro.lfv.se/Editorial/View/General/15776/LFV_OBSTACLE_DATASET_AREA1_WEF_20251030.zip";
+    "https://aro.lfv.se/Editorial/View/General/15805/LFV_OBSTACLE_DATASET_AREA1_WEF_20251127.zip";
 
 main().catch(console.error);
 async function main() {
